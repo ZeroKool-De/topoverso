@@ -1,0 +1,764 @@
+/* topolinolib/admin/assets/css/admin_style.css */
+
+/* ===============================================
+   STILI GLOBALI ADMIN E LAYOUT BASE
+   =============================================== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f6f9; 
+    color: #495057; 
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* Stili Header Admin */
+.admin-header {
+    background-color: #343a40; 
+    color: white;
+    padding: 12px 25px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky; 
+    top: 0;
+    z-index: 1020; 
+}
+.admin-header h1 {
+    margin:0;
+    font-weight: 500; 
+    white-space: nowrap; /* Evita che il titolo admin vada a capo */
+}
+.admin-header h1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4em; 
+}
+
+/* MODIFICHE PER LA NAVIGAZIONE RESPONSIVE */
+.admin-nav {
+    overflow-x: auto; /* Permette lo scroll orizzontale se il menu è troppo largo */
+    overflow-y: hidden; /* Nasconde lo scroll verticale se dovesse apparire */
+    -webkit-overflow-scrolling: touch; /* Migliora lo scroll su iOS */
+    scrollbar-width: thin; /* Scrollbar più sottile per Firefox */
+    scrollbar-color: #6c757d #343a40; /* Colori scrollbar per Firefox */
+}
+/* Stili per scrollbar Webkit (Chrome, Safari, Edge) */
+.admin-nav::-webkit-scrollbar {
+    height: 6px; /* Altezza della scrollbar orizzontale */
+}
+.admin-nav::-webkit-scrollbar-track {
+    background: #343a40; /* Sfondo della traccia */
+}
+.admin-nav::-webkit-scrollbar-thumb {
+    background-color: #6c757d; /* Colore del cursore della scrollbar */
+    border-radius: 3px;
+}
+
+.admin-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 5px; /* Aggiunto piccolo padding per non far toccare i bordi durante lo scroll */
+    display: flex;
+    align-items: center; 
+    flex-wrap: nowrap; /* Impedisce alle voci di menu di andare a capo */
+}
+.admin-nav ul li {
+    margin-left: 5px; /* Leggermente ridotto */
+    white-space: nowrap; /* Assicura che il testo dentro <li> non vada a capo */
+}
+.admin-nav ul li:first-child {
+    margin-left: 0;
+}
+.admin-nav ul li a {
+    color: #adb5bd; 
+    text-decoration: none;
+    padding: 8px 10px; /* Padding orizzontale leggermente ridotto */
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.9em; 
+    display: block; /* Assicura che il padding sia applicato correttamente */
+}
+.admin-nav ul li a:hover,
+.admin-nav ul li a.active {
+    background-color: #495057; 
+    color: #fff; 
+}
+.admin-nav ul li a .admin-username { /* Per stilare diversamente il nome utente se necessario */
+    font-size: 0.9em; /* Esempio: rende il nome utente leggermente più piccolo */
+    opacity: 0.8;
+    margin-left: 4px;
+}
+
+.admin-list-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.admin-list-controls .form-inline {
+    display: flex;
+    gap: 5px;
+}
+.pagination-controls {
+    text-align: center;
+    margin: 20px 0;
+}
+.pagination-controls a, .pagination-controls span {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    text-decoration: none;
+    color: #007bff;
+    border-radius: 4px;
+}
+.pagination-controls span.disabled {
+    color: #aaa;
+    border-color: #eee;
+}
+.pagination-controls span.current-page {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+
+/* Contenitore principale Admin */
+.container.admin-container {
+    width: 95%; 
+    max-width: 1320px; 
+    margin: 25px auto;
+    padding: 25px 30px; 
+    background-color: white;
+    border-radius: 6px; 
+    box-shadow: 0 0 15px rgba(0,0,0,0.07);
+}
+.admin-container h2 {
+    margin-top:0;
+    font-size: 1.75em; 
+    color: #343a40;
+    border-bottom: 1px solid #dee2e6; 
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+.admin-container h3 {
+    font-size: 1.4em; 
+    color: #495057;
+    margin-top: 30px;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+
+/* ===============================================
+   DASHBOARD ADMIN (admin/index.php)
+   =============================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px; 
+    margin-top: 20px; 
+}
+
+.dashboard-panel {
+    background-color: #ffffff;       
+    border: 1px solid #dee2e6;     
+    border-radius: 8px;            
+    padding: 25px 20px;            
+    text-decoration: none;         
+    color: #495057;                
+    display: flex;                 
+    flex-direction: column;        
+    align-items: center;           
+    justify-content: center;       
+    text-align: center;            
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.07); 
+    min-height: 200px;             
+}
+
+.dashboard-panel:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    transform: translateY(-3px);          
+    border-color: #adb5bd;                
+}
+
+.dashboard-panel .panel-icon {
+    margin-right: 0;     
+    margin-bottom: 15px; 
+    flex-shrink: 0;      
+}
+
+.dashboard-panel .panel-icon svg {
+    width: 40px;         
+    height: 40px;
+    stroke: #007bff;     
+    transition: stroke 0.2s ease-in-out;
+}
+
+.dashboard-panel:hover .panel-icon svg {
+    stroke: #0056b3;     
+}
+
+.dashboard-panel .panel-content h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;    
+    color: #343a40;      
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+.dashboard-panel:hover .panel-content h3 {
+    color: #007bff;      
+}
+
+.dashboard-panel .panel-content p {
+    margin: 0;
+    font-size: 0.88em;   
+    line-height: 1.5;
+    color: #6c757d;      
+}
+
+
+/* ===============================================
+   STILI PER COMPONENTI ADMIN (Pulsanti, Tabelle, Form, Messaggi)
+   =============================================== */
+
+/* Pulsanti Admin */
+.btn {
+    display: inline-block;
+    padding: 9px 16px; 
+    margin-bottom: 10px;
+    margin-right: 6px;
+    border: 1px solid transparent; 
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.9em; 
+    font-weight: 500; 
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    text-align: center;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+.btn:last-child { margin-right: 0; }
+
+.btn-primary { background-color: #007bff; border-color: #007bff; color: white; }
+.btn-primary:hover { background-color: #0069d9; border-color: #0062cc; }
+.btn-warning { background-color: #ffc107; border-color: #ffc107; color: #212529; } 
+.btn-warning:hover { background-color: #e0a800; border-color: #d39e00; }
+.btn-danger { background-color: #dc3545; border-color: #dc3545; color: white; }
+.btn-danger:hover { background-color: #c82333; border-color: #bd2130; }
+.btn-success { background-color: #28a745; border-color: #28a745; color: white; }
+.btn-success:hover { background-color: #218838; border-color: #1e7e34; }
+.btn-secondary { background-color: #6c757d; border-color: #6c757d; color: white; }
+.btn-secondary:hover { background-color: #5a6268; border-color: #545b62; }
+.btn-info { background-color: #17a2b8; border-color: #17a2b8; color: white; } 
+.btn-info:hover { background-color: #138496; border-color: #117a8b; }
+
+.btn-sm { padding: .25rem .5rem; font-size: .8em; border-radius: .2rem; }
+.btn-lg { padding: .5rem 1rem; font-size: 1.1em; border-radius: .3rem; }
+
+/* Tabelle Admin */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #fff; 
+    border: 1px solid #dee2e6; 
+}
+.table th,
+.table td {
+    border: 1px solid #dee2e6;
+    padding: 10px 14px; 
+    text-align: left;
+    vertical-align: middle;
+}
+.table thead th { 
+    background-color: #f8f9fa; 
+    font-weight: 600; 
+    color: #495057;
+    border-bottom-width: 2px; 
+}
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa; 
+}
+.table tbody tr:hover {
+    background-color: #e9ecef; 
+}
+.table img {
+    max-width: 50px;
+    height: auto;
+    border-radius: 3px;
+    vertical-align: middle; 
+}
+
+/* Form Admin */
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500; 
+    color: #495057;
+}
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="password"],
+.form-group textarea,
+.form-group select {
+    width: 100%; 
+    padding: 9px 12px; 
+    border: 1px solid #ced4da; 
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.95em;
+    line-height: 1.5;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="date"]:focus,
+.form-group input[type="password"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #80bdff; 
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.25); 
+}
+
+.form-group input[type="file"].form-control-file { 
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    display: block; 
+}
+.form-group textarea {
+    resize: vertical;
+    min-height: 90px; 
+}
+.form-group small, .form-group .form-text {
+    display: block;
+    margin-top: .3rem; 
+    font-size: 0.875em; 
+    color: #6c757d;
+}
+.form-group input[type="checkbox"], .form-group input[type="radio"] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.form-group label.inline-label {
+    font-weight: normal;
+    display: inline-block; 
+    margin-bottom: 0; 
+    margin-right: 10px;
+}
+
+/* Messaggi Admin */
+.message {
+    padding: 1rem 1.25rem; 
+    margin-bottom: 1.5rem; 
+    border-radius: .25rem;
+    border-width: 1px;
+    border-style: solid;
+    font-size: .95em;
+}
+.message.success { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+.message.error   { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+.message.info    { background-color: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+.message.warning { background-color: #fff3cd; color: #856404; border-color: #ffeeba; }
+
+
+/* ===============================================
+   PAGINA DI LOGIN ADMIN (admin/login.php)
+   =============================================== */
+body.login-body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    margin: 0;
+    padding: 20px; 
+    box-sizing: border-box;
+}
+.login-container {
+    background-color: #fff;
+    padding: 30px 35px; 
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px; 
+}
+.login-container h1 {
+    text-align: center;
+    color: #343a40;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.9em; 
+    font-weight: 500;
+}
+.btn-login { 
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 11px 15px; 
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.05em; 
+    font-weight: 500;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+.btn-login:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+.login-container .error-message { 
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: .75rem 1rem; 
+    margin-bottom: 20px;
+    border-radius: .25rem;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* Stili per gestione storie (admin/stories_manage.php) - sezioni Autori/Personaggi */
+.story-authors-list, .story-characters-list { margin-left: 20px; font-size: 0.9em; padding-left: 0; list-style: none;}
+.story-authors-list li, .story-characters-list li { margin-bottom: 3px; }
+.story-characters-list img { max-width: 20px; max-height: 20px; vertical-align: middle; margin-right: 5px; border-radius: 2px;}
+.story-series-info { font-size: 0.85em; color: #6c757d; margin-top: 3px; } /* Per info serie nella tabella storie */
+
+
+.person-role-pair { margin-bottom: 15px; padding: 15px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 4px; }
+.person-role-pair .form-group { margin-bottom: 10px; }
+#story-persons-wrapper .person-role-pair:not(:first-child) { margin-top: 15px; }
+
+/* Stili per gestione variant in comics_manage.php */
+.existing-variant-covers .variant-cover-item {
+    display: flex;
+    align-items: flex-start; /* Allinea l'immagine e i campi in alto */
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+}
+.existing-variant-covers .variant-cover-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.existing-variant-covers .variant-cover-item img {
+    width: 80px; 
+    height: auto; 
+    max-height: 120px; /* Evita che l'immagine sia troppo alta */
+    object-fit: cover;
+    margin-right: 15px; 
+    border:1px solid #ccc; 
+    padding:2px;
+    border-radius: 3px;
+}
+.existing-variant-covers .variant-cover-item .form-group {
+    margin-bottom: 8px; /* Meno spazio tra label e input dentro l'item */
+}
+.existing-variant-covers .variant-cover-item label:not(.inline-label) { /* Etichette più piccole per i campi interni */
+    font-size: 0.85em;
+    font-weight: normal;
+    margin-bottom: 3px;
+}
+.existing-variant-covers .variant-cover-item .form-control-sm { /* Usa input più piccoli */
+    font-size: 0.85rem;
+    padding: .25rem .5rem;
+    height: calc(1.5em + .5rem + 2px); /* Altezza standard per .form-control-sm di Bootstrap */
+}
+.existing-variant-covers .variant-cover-item input[type="number"].form-control-sm {
+    width: 90px; /* Larghezza fissa per l'input dell'ordine */
+}
+.existing-variant-covers .variant-cover-item .inline-label { /* Etichetta per checkbox elimina */
+    font-size: 0.85em;
+    margin-top: 8px;
+}
+/* NUOVI STILI PER IL MENU ADMIN A ICONE */
+/* Se avevi stili per .admin-nav ul e .admin-nav ul li a per un menu testuale, 
+   potresti doverli commentare o rendere più specifici per non entrare in conflitto.
+   Oppure, usa la classe .icon-menu per specificità. */
+
+header.admin-header .admin-nav.icon-menu {
+    overflow-x: auto; /* Permette scroll orizzontale se ci sono troppe icone */
+    overflow-y: hidden;
+    flex-grow: 1;
+    display: flex; /* Per allineare la lista ul al centro o come preferisci */
+    justify-content: center; /* Centra le icone se c'è spazio */
+}
+
+header.admin-header .admin-nav.icon-menu ul {
+    display: flex;
+    justify-content: center; /* Centra la lista di icone */
+    align-items: center;
+    flex-wrap: nowrap; /* Evita che le icone vadano a capo */
+    padding: 0 5px; /* Padding laterale ridotto per la lista di icone */
+    margin: 0;
+    list-style-type: none;
+}
+
+header.admin-header .admin-nav.icon-menu ul li {
+    margin: 0 1px; /* Spazio minimo tra le aree cliccabili delle icone */
+}
+
+header.admin-header .admin-nav.icon-menu ul li a {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px; /* Aumentato leggermente il padding per un'area cliccabile migliore */
+    color: #adb5bd; 
+    border-radius: 4px;
+    position: relative; 
+    transition: background-color 0.2s, color 0.2s;
+    text-decoration: none; /* Assicura che non ci sia sottolineatura */
+}
+
+header.admin-header .admin-nav.icon-menu ul li a:hover,
+header.admin-header .admin-nav.icon-menu ul li a.active {
+    background-color: #495057; /* Sfondo scuro per hover/active */
+    color: #fff; /* Icona bianca */
+}
+
+.admin-menu-icon {
+    width: 20px; 
+    height: 20px;
+    display: block;
+    /* fill e stroke sono gestiti da currentColor o direttamente negli SVG */
+}
+
+/* Tooltip per le icone del menu admin */
+.admin-menu-label {
+    visibility: hidden;
+    opacity: 0;
+    background-color: #343a40; /* Sfondo scuro per tooltip */
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1030; /* Deve essere sopra altri elementi dell'header se necessario */
+    bottom: calc(100% + 8px); /* Posiziona sopra l'icona, con 8px di spazio */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.8em; /* Testo del tooltip piccolo ma leggibile */
+    font-weight: 500;
+    transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+    pointer-events: none; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.admin-menu-label::after { /* Freccia del tooltip */
+    content: "";
+    position: absolute;
+    top: 100%; /* In basso al tooltip */
+    left: 50%;
+    margin-left: -5px; /* Metà della larghezza della freccia */
+    border-width: 5px;
+    border-style: solid;
+    border-color: #343a40 transparent transparent transparent; /* Freccia scura che punta verso il basso */
+}
+
+header.admin-header .admin-nav.icon-menu ul li a:hover .admin-menu-label {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Rimuovi gli stili per .admin-nav::-webkit-scrollbar se non più necessari o se il menu non fa più scroll */
+/* Ad esempio:
+.admin-nav::-webkit-scrollbar { height: 0px; }
+.admin-nav::-webkit-scrollbar-track { background: transparent; }
+.admin-nav::-webkit-scrollbar-thumb { background-color: transparent; }
+*/
+/* Fine NUOVI STILI PER IL MENU ADMIN A ICONE */
+/* === STILI AGGIUNTIVI PER GESTIONE VOTI (ratings_manage.php) === */
+
+/* Rende le tabelle complesse scrollabili orizzontalmente su schermi piccoli */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Migliora lo scroll su iOS */
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+/* Assicura che le tabelle all'interno del wrapper non abbiano bordi doppi */
+.table-responsive-wrapper .table {
+    border: none;
+    margin-bottom: 0;
+}
+
+/* Stili per le colonne della tabella dei voti */
+.ratings-table th,
+.ratings-table td {
+    vertical-align: middle;
+    padding: 10px 12px;
+}
+
+.ratings-table th {
+    white-space: nowrap; /* Evita che i titoli delle colonne vadano a capo */
+}
+
+/* Larghezze specifiche per le colonne */
+.col-id { width: 5%; }
+.col-rating { width: 15%; text-align: center; }
+.col-ip { width: 15%; }
+.col-date { width: 15%; white-space: nowrap; }
+.col-action { width: 10%; text-align: center; }
+
+/* Stile per le stelle del voto */
+.rating-stars {
+    color: #ffc107; /* Giallo per le stelle */
+    font-size: 1.2em;
+    white-space: nowrap;
+    letter-spacing: 1px;
+}
+
+/* Stile per l'indirizzo IP, per renderlo meno prominente */
+.ip-address {
+    font-family: monospace;
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+/* Stili per la colonna "Storia" che ha due righe di testo */
+.story-rating-title a {
+    font-weight: 600;
+    color: #2c3e50;
+    text-decoration: none;
+}
+.story-rating-title a:hover {
+    color: #007bff;
+}
+
+.story-rating-comic-context {
+    font-size: 0.85em;
+    color: #777;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Stili per il form di cancellazione dentro la tabella */
+.table td form {
+    margin: 0; /* Rimuove margini che possono sfasare l'allineamento verticale */
+}
+
+/* Stili per i TAB (copiati da user_dashboard.php per coerenza) */
+.user-dashboard-tabs {
+    margin-bottom: 25px;
+    border-bottom: 2px solid #007bff;
+}
+.user-dashboard-tabs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.user-dashboard-tabs ul li {
+    margin-right: 5px;
+    margin-bottom: -2px;
+}
+.user-dashboard-tabs ul li a.user-tab-link {
+    display: inline-block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #495057;
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    font-weight: 600;
+    font-size: 1.05em;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    position: relative;
+}
+.user-dashboard-tabs ul li a.user-tab-link:hover {
+    background-color: #d1d9e0;
+    color: #212529;
+}
+.user-dashboard-tabs ul li a.user-tab-link.active-user-tab {
+    background-color: #fff;
+    color: #007bff;
+    border-color: #007bff #007bff #fff;
+    border-top-width: 2px;
+    font-weight: 700;
+}
+.user-tab-content-panels .user-tab-content {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    margin-bottom: 30px;
+}
+.user-tab-content-panels .user-tab-content:not(.active-user-content) {
+    display: none;
+}
+.user-tab-content-panels .user-tab-content.active-user-content {
+    display: block;
+}
+/* =============================================== */
+/* Stili per Layout Admin (Senza Sidebar)          */
+/* =============================================== */
+
+.admin-main-container {
+    /* Questo contenitore non ha più bisogno di flexbox */
+    width: 100%;
+}
+
+main.admin-content {
+    padding: 25px;
+    background-color: #f4f6f9;
+}
+/* Stili per Pannello Manutenzione */
+.maintenance-tools {
+    border-top: 2px solid #eee;
+    margin-top: 30px;
+    padding-top: 20px;
+}
+
+.maintenance-tools .tool-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.maintenance-tools h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.maintenance-tools p {
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.btn-maintenance {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-maintenance:hover {
+    background-color: #2980b9;
+}
